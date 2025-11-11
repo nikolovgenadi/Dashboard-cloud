@@ -27,7 +27,7 @@ export async function fetchRevenue() {
 
     return data.rows;
   } catch (error) {
-    console.error('Database Error:', error);
+    console.error('database error:', error);
     // throw new Error('Failed to fetch revenue data.');
   }
 }
@@ -61,11 +61,11 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchCardData() {
-      // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
+  // Artificially delay a response for demo purposes.
+  // Don't do this in production :)
 
-    console.log('Fetching latest invoice data...');
-    await new Promise((resolve) => setTimeout(resolve, 800));
+  console.log('Fetching latest invoice data...');
+  await new Promise((resolve) => setTimeout(resolve, 800));
   noStore();
 
   try {
@@ -182,8 +182,8 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
-    console.log(invoice)
-    
+    console.log(invoice);
+
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
