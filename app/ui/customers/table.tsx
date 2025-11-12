@@ -44,6 +44,9 @@ export default async function CustomersTable({
                         <p className="text-sm text-gray-500">
                           {customer.email}
                         </p>
+                        <p className="text-xs text-gray-400 mt-1">
+                          Joined: {new Date(customer.created_at).toLocaleDateString()}
+                        </p>
                       </div>
                     </div>
                     <div className="flex w-full items-center justify-between border-b py-5">
@@ -70,6 +73,9 @@ export default async function CustomersTable({
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       Email
+                    </th>
+                    <th scope="col" className="px-3 py-5 font-medium">
+                      Created At
                     </th>
                     <th scope="col" className="px-3 py-5 font-medium">
                       Total Invoices
@@ -100,6 +106,9 @@ export default async function CustomersTable({
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {customer.email}
+                      </td>
+                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                        {new Date(customer.created_at).toLocaleDateString()}
                       </td>
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {customer.total_invoices}
