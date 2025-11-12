@@ -111,13 +111,13 @@ export async function authenticate(
   try {
     await signIn('credentials', formData);
   } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid credentials.';
-        default:
-          return 'Something went wrong.';
+    // ts error is unknown so assert type
+    if (typeof error === 'object' && error && 'type' in error) {
+      // @ts-ignore
+      if (error.type === 'CredentialsSignin') {
+        return 'Invalid credentials.';
       }
+      return 'Something went wrong.';
     }
     throw error;
   }
