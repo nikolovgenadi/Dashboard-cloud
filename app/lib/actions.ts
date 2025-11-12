@@ -113,10 +113,9 @@ export async function authenticate(
 ) {
   try {
     await signIn('credentials', {
-      redirect: false,
       ...Object.fromEntries(formData),
+      redirectTo: '/dashboard',
     });
-    redirect('/dashboard');
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
