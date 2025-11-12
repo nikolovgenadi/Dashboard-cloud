@@ -86,12 +86,12 @@ export async function updateInvoice(id: string, formData: FormData) {
         status = ${status}
     WHERE id = ${id}
   `;
+    revalidatePath('/dashboard/invoices');
+    redirect('/dashboard/invoices');
   } catch (error) {
-    return { message: 'Database Error: Failed to Update Invoice.' };
+    // Optionally log error
+    // throw error; // Let Next.js handle error boundary
   }
-
-  revalidatePath('/dashboard/invoices');
-  redirect('/dashboard/invoices');
 }
 
 export async function deleteInvoice(id: string) {
@@ -101,10 +101,7 @@ export async function deleteInvoice(id: string) {
     WHERE id = ${id}
   `;
     revalidatePath('/dashboard/invoices');
-    return { message: 'Deleted Invoice.' };
-  } catch (error) {
-    return { message: 'Database Error: Failed to Delete Invoice.' };
-  }
+  } catch (error) {}
 }
 
 export async function authenticate(
@@ -112,10 +109,7 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
-    await signIn('credentials', {
-      ...Object.fromEntries(formData),
-      redirectTo: '/dashboard',
-    });
+    await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
