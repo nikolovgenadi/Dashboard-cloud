@@ -12,7 +12,7 @@ const pool = new Pool({
   },
   max: 20, // max # clients in pool
   idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  connectionTimeoutMillis: 10000,
 });
 
 // SQL queries tagged template literals
